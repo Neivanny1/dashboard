@@ -1,0 +1,3 @@
+flask
+libmysqlclient-dev
+flask-mysqldb

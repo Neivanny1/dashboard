@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+        MSU | Dashboard
+    </title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.png') }}" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <!-- Bootstrap 3.3.7 -->
+<!-- Bootstrap 3.3.7 from CDN -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Font Awesome 4.7.0 from CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!-- Ionicons 2.0.1 from CDN -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
+<!-- jvectormap from CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.css" />
+
+<!-- DataTables from CDN -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/AdminLTE.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/skins/_all-skins.min.css') }}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.10/css/ionicons.min.css">
+    <link href="../static/Zebra_Datepicker-master/public/css/bootstrap.css" rel="stylesheet" />
+
+    <script src="../static/Zebra_Datepicker-master/examples/public/javascript/jquery-1.12.0.js"></script>
+    <script src="../static/Zebra_Datepicker-master/public/javascript/zebra_datepicker.js"></script>
+    <script src="../static/Zebra_Datepicker-master/public/javascript/zebra_datepicker.src.js"></script>
+
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        $j(document).ready(function() {
+            var $zdp = $j('#Main2__dtRequiredDate').data('Zebra_DatePicker');
+            // assuming the controls you want to attach the plugin to 
+            // have the "datepicker" class set
+            $j('ctl00_Main2__datepicker').Zebra_DatePicker();
+
+        });
+    </script>
+</head>
+
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+    <form method="post" action="./Dashboard" id="form1">
+        <div class="aspNetHidden">
+            <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+            <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="w41Pyq67TzkEirq3iR1oBlRwI/li5/WkVclIMHe+g6zgMa/aKFs5QmTkkI9me4r81CSI0YwSq6A/bE2cvzBu8nUdx+64y37+sZGwYvJInvIE9WLSzfDQL/sdxsk5F1OlqQYaHb0df6J33AeQvhWbD6iuxXW1pej9vNh+/+Dd4A26zZ5D/59pln4os0N37gj4sB3AJmz2zWQs6CMqDej7brzl/VxMhoJe5QS8/u35CXMTHes43wcYWmGeIiMRCcXz57xH6NUu6N6WBxuJwO5RO6KDD7YHuUstZrLuFbCCC3FoTUae4DKrCSKylX1JH2D0nSFEbecPgz8SLNYkop/+WSjJ63Bxhnmkux/Sml+SBCn0X25hEmEcJFAgZeshM80RepwEOOZHNQNDoXqx6XzEiCjytFFQ+vJNsNn3iiqSCPkAh/kIGYnAyg5ohHbef6apcnEja0wKvds+IfyoAGBDk7dRUYh+wd8uj0+fQi+3q8E2qcBBz2L1pbSZEUzGoM1kiz5nXJJkvJe2Hof+VDcPKGu8hn/bKdSsvLqhnHVy6qKcwwGp+uhOm0DDRtj6PbLH7ME2uB17RKGG1pWyEijKxNjtSDf9NsBkebOdUjNQbKCrQSlfOGVhmoh62FLuwc4WGYK+PcbS+CoedjYy6y1Mwv8O9wQfEj7NvD62VUdLVsF1Hy1QSRqrdjgLkaAiRNVQjtPhxWW5tgWMJARMJ13immKIFbMg8afFlRxKaTo6cMAgylhpNDlNpJ3aY67A5YeNMOBNk0qEUSMCCZo9PbteoOH2mSvOPPu7DIoff2SkP3FudhzIoX+d36Xp0e1uwj/OSvAeOwrttpKmq41id4jssSNqt37knlD09gtdThyn+tawKABdtrHNnv/qXvqVCiDlxfHa5hkOYzD7nMRdU8v7qUfLnEAAvdXyP4aW1QSht+WqIAQRL1tPoHdZUfNCr+RWlw6pkiF/c8FkroWFei8YjZ9OkLAz7DS9OXTzFXfa4NvisYQ4+v3fb0ykrE3c8ns8CiyN8ycYXo1Gm/D+CesTs+0s254fgd9btrMtFV/0cfP8Dd2ut6VeImdGYcjqNn9LQQuMVT7MOzxKJhVorvtiTZQKU2EVEN6F+0bwPDbHszg4BCDw1+VXLkRdWXMCjVvjTG8o8OhiOV8FyXInS7G9Nd/gFTQdKnFYtysrCKq5Kx9RWiJyI4CTN9xSwr30VfrSsEK1AHA9/4vSpMFhATT+i1moxvobNGk1X9A7H4AF6reUnULFpmbjVg/v5vtQnKdKjzpJoJFwfjX/hWgBMC4UEx23/lvfmiIrOgPATjzWHMF48gulFJQ60Lr1zKQiFge3QktfUbP5QJ6XPD+pFa2V8yhjbBmwLLkG2w8Xm2dDfF5qmxV+Qfe87SvaDntnFqA1y87Y+NiGGbYxO++9DB5jsLwWLjNu9qcIRqOpV8gNtITDPFV7yO3TKZKRIb1MydfLUGiyc26jUqUhZm9+qJQb4cOBfJYPaW2moOEgys4PI+IH9btN6R5T3senMlUqnQTXcRuCMe/nJ8KmwvHKwIfJxD3wnT9XGyJTcgjJPfzN32pI4f1TFw3NtO3b3j9HsQPVRH1ihmLeuuU6O4ilRYMeG6SjUGs0DAaATRIOp8eih9UDusXn8qtDF43FkC9jcFqwr+zXFsmklqM/bx5z6g8pY6pvD9ttQQdR7vtWmExpiyGNyX+fl98Xqqs/z0rbUKBtZ/oECRn89ZLzhq/NXtQDv+Y/SD/UamfmXU1WQDzBZ1/hO1kSmDh3km5e2NSNCUqKTp1WaQfcWAHWOYj8cvs535y1a4gE4nVdWRGl07NynsfinAsbSBaDlhvlJbkGE955RLM1zV9kIjBZKVXzyUc3aKq0bU1vZsJCFg9dRA+3yKidXMeozbM8iPZcqPH9OXUz1U+ws6rw0qMXepk3ex348Q/qbtqm6ApdsM1lZ55dftP/BUH2l9fJzCVf3Od5jDX7FuXpnBATs4b0TSB3Bs/8O+0nKpSZ03tOAFlnY/4pu93fRxpTddSlc/mqj4euKu7lKXSP5fSUllduVIYlgqpRAoYYSBsmcd92+o1MM3Kx9hPin+dQ1iFuSMy0ZCzXI77eg9dKB58mfy6fBJus6VoWoIzEU3GCaLj2y5R6PlvimbPYU52zO8OTcR6BhOJ239AlIb8BKMTKhEN+K/Q4Bp+RM7DkxubwNyCWx1Ee1qbHvZmCjEuoK6Wm2BFMh9i5IkkPeusiR86qmOmnVjVbFOwlWw8s3tVPbyE479JgXGJrEBEgLEJlirDFqd3v42/qZYrq6Jd6cnPy3NTSIB+4kV9XQANzaqE7FJG8tk/l4FVaViWQqi045hLs+UWBQMpePPljmBlbygJQcsg6Sz+LoB+NPrqS1kV/PaCLXMzwWWKyMu6HDBa77wCmTZzXav01QNAmLoR3eZdLgGnnanUGv42KmVyxJe+PxBvDAVCYZ0Hbu2WoZOgoO3WluJHQOUzKOP61kF+CR46CeIkPZbq0N1FM+IP/NWjYFUwHzdenJC1qlkQubCMYfAr7Ub1hLkksw1XQmMjFRrv72O8B4UbrNtXKFXQksAPoJkRZYVll8t5aMq2kBoyXF7LmUKK3G7le2ciWJd+C9Y+adwgRpMybWESxH7e+S7Sd60Lugs7Qss+mYgm5tY/2kmkkhZP0vCPLnaGuyEkPzIy3esPyMt6HmaufqZNQxAPxW8Ux4bHXp0+Wt2huajkHMW+LOTK+tfoMAqvaGBYdj8iFsU0ZAbVSylxYXyJFIkoqMv5OcEcOetrfkdKRGrPknuFDxDWnBwqfV3WmLxwABFfgzLf0rzVz7EPsLWDxl/UpF7c1XvYLYNvd5zFjLFHzAQ3ILKlfXh0rpsH8Vkr9dG1Rr+k7AQ1QvOJ2Ph7M5Fk3Nmzj93gDdUXJwxxNKctMp2t/BX20hIs6h+6T1d4/ELO1q+1Zc1RxVcWgGw=="
+            />
+        </div>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var theForm = document.forms['form1'];
+            if (!theForm) {
+                theForm = document.form1;
+            }
+
+            function __doPostBack(eventTarget, eventArgument) {
+                if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                    theForm.__EVENTTARGET.value = eventTarget;
+                    theForm.__EVENTARGUMENT.value = eventArgument;
+                    theForm.submit();
+                }
+            }
+            //]]>
+        </script>
+
+
+        <div class="aspNetHidden">
+
+            <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="0A817427" />
+            <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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"
+            />
+        </div>
+        <div class="wrapper">
+
+            <header class="main-header">
+
+                <!-- Logo -->
+                <a href="index2.html" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>M</b>SU</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>MSU </b>Portal</span>
+                </a>
+
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+
+
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ url_for('static', filename='images/logo.png') }}"class="user-image" alt="User Image">
+                                    <span class="hidden-xs">Welcome:
+                                        <span id="lblUser">{{ user.name }}</span></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="{{ url_for('static', filename='images/logo.png') }}" class="img-circle" alt="User Image">
+
+                                        <p>
+                                            <span id="lblUser2">{{ user.name }}</span>
+
+
+                                        </p>
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a id="lbtnLogout" class="btn btn-default btn-flat" href="javascript:__doPostBack(&#39;ctl00$lbtnLogout&#39;,&#39;&#39;)"><i class="fa fa-sign-out"></i> Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="{{ url_for('static', filename='images/logo.png') }}" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>
+                                <span id="lblUser3">{{ user.name }}</span>
+                            </p>
+                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                        </div>
+                    </div>
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <li><a href="{{ url_for('dashboard') }}">
+                        <i class="fa fa-dashboard text-blue"></i><span>Dashboard</span></a></li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-pie-chart text-red"></i>
+                                <span>Financials</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="FeePayment.aspx"><i class="fa fa-circle-o"></i>Fee Payment</a></li>
+                                <li><a href="ProformaInvoice.aspx"><i class="fa fa-circle-o"></i>Profoma Invoice</a></li>
+                                <li><a href="FeeStatement.aspx"><i class="fa fa-circle-o"></i>Fees Statement</a></li>
+                                <li><a href="FeesPDF.aspx"><i class="fa fa-circle-o"></i>Fees Statement - PDF</a></li>
+                                <li><a href="Receipts.aspx"><i class="fa fa-circle-o"></i>Payment Receipts</a></li>
+                                <li><a href="FeeStructure.aspx"><i class="fa fa-circle-o"></i>Fee Structure</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-graduation-cap text-green"></i>
+                                <span>Academics</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="UnitsRegistration.aspx"><i class="fa fa-circle-o"></i>Register Units</a></li>
+                                <li><a href="ProvisionalResults.aspx"><i class="fa fa-circle-o"></i>Provisional Results</a></li>
+                                <li><a href="ProvisionalTranscript.aspx"><i class="fa fa-circle-o"></i>Provisional Transcript</a></li>
+                                <li><a href="ExamCards.aspx"><i class="fa fa-circle-o"></i>Exam Cards</a></li>
+
+                            </ul>
+                        </li>
+                        <li id="accomID" class="treeview">
+                            <a href="#">
+                                <i class="fa fa-building-o text-blue"></i>
+                                <span>Accommodation</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Accommodation.aspx"><i class="fa fa-circle-o"></i>Room Booking</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                <span>Special Exams</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="SpecialExams.aspx?sn=sup"><i class="fa fa-circle-o"></i>Resit Exam Registration</a></li>
+                                <li><a href="SpecialExams.aspx?sn=spe"><i class="fa fa-circle-o"></i>Special Exam Registration</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-download text-red" aria-hidden="true"></i>
+                                <span>Downloads</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="AdmissionLetter.aspx"><i class="fa fa-circle-o"></i>Admission Letter</a></li>
+                                <li><a href="TransferLetter.aspx"><i class="fa fa-circle-o"></i>Transfer Letter</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-lightbulb-o"></i>
+                                <span>Students Clearance</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Clearance.aspx"><i class="fa fa-circle-o"></i>Graduation Clearance</a></li>
+
+                            </ul>
+
+                        </li>
+
+
+                        <li><a href="InterSchoolTransfer.aspx"><i class="fa fa-exchange text-green"></i><span>Inter-School Transfer</span></a></li>
+                        <li id="sttt" class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cogs  text-blue"></i>
+                                <span>Settings</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+
+                                <li><a href="ChangePassword.aspx"><i class="fa fa-circle-o"></i>Change password</a></li>
+                            </ul>
+                        </li>
+                        <li class="header">PERIODIC ACTIVITIES</li>
+
+                        <li><a href="LecsEvaluation.aspx"><i class="fa fa-microphone text-yellow"></i><span>Lecturers Evaluation</span></a></li>
+                        <li><a href="Elections.aspx"><i class="fa fa-volume-up text-aqua"></i><span>MSU Election</span></a></li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Dashboard </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="Dashboard.html"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+
+                <section class="content">
+                    <!-- Info boxes -->
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="info-box bg-yellow">
+                                <!-- <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span> -->
+                                <span class="info-box-icon"><i class="fa fa-tags"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total Billed:</span>
+                                    <span class="info-box-number">Ksh.
+                                <span id="Main1_lblDR">{{ user.billed }}</span></span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                                    <a href="FeesPDF.aspx" class="small-box-footer white" style="color: white">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="info-box bg-green">
+                                <!-- <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span> -->
+                                <span class="info-box-icon"><i class="fa fa-heart-o"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Total Paid:</span>
+                                    <span class="info-box-number">Ksh.
+                                <span id="Main1_lblCR">{{ user.paid }}</span></span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:100%"></div>
+                                    </div>
+                                    <a href="FeesPDF.aspx" class="small-box-footer white" style="color: white">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <!-- /.info-box -->
+                            <div class="info-box bg-aqua">
+                                <!-- <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span> -->
+                                <span class="info-box-icon"><i class="fa fa-comment-o"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Balance:</span>
+                                    <span class="info-box-number">Ksh.
+                                <span id="Main1_lblBal">{{ user.balance }}</span></span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                                    <a href="FeesPDF.aspx" class="small-box-footer white" style="color: white">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                    </div>
+
+                    <!-- Main row -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">User Profile</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body box-profile">
+                                    <img id="Main1_ImgProfileDefault" class="profile-user-img img-responsive img-circle" 
+                                    alt="User profile picture" 
+                                    src="{{ url_for('static', filename='images/student_m.png') }}" 
+                                    style="height:200px;width:200px;" />
+                                    <h3 class="profile-username text-center">
+                                        <span id="Main1_lblUser">{{ user.name }}</span></h3>
+                                    <strong><i class="fa fa-book margin-r-5"></i>Programme</strong>
+
+                                    <p class="text-muted">
+                                        <span id="Main1_lblCourse">{{ user.course }}</span> -
+                                        <span id="Main1_lblCProg">{{ user.degree }}</span>
+                                    </p>
+                                    <hr>
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer no-padding">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li><a href="#">My Stage                  
+                                    <span class="pull-right text-red"><i class="fa fa-angle-down"></i>
+                                        <span id="Main1_lblSTage">{{ user.stage }}</span></span></a></li>
+                                    </ul>
+                                </div>
+
+                                <!-- /.footer -->
+                            </div>
+                        </div>
+                        <!-- Left col -->
+                        <div class="col-md-8">
+                            <!-- MAP & BOX PANE -->
+
+                            <!-- TABLE: LATEST ORDERS -->
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Personal Information</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-sm btn-success" 
+                                        data-toggle="modal" data-target="#modal-default">
+                                        <i class="fa fa-edit"></i>Update Profile</button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="table-responsive">
+                                        <table class="table no-margin">
+                                            <tbody>
+                                                <tr>
+                                                    <td><a href="#">Admission No:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblNo">{{ user.admission }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">ID/ Passport:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblIDNo">{{ user.passport }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Full Name:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblNames">{{ user.name }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Gender:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblGender">{{ user.gender }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Date of Birth:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblDOB">{{ user.dob }}</span><span id="Main1_Label8"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Phone Number:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblPhoneNo1">{{ user.phone }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Email Address:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblEmail">{{ user.email }}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">Postal Address:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblPostalAddress">{{ user.postal }}</span>&nbsp;<span id="Main1_lblPostalAddress2"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">University Email:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblUmail"></span>&nbsp;<span id="Main1_Label2"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><a href="#">University Email Password:</a></td>
+                                                    <td>
+                                                        <div>
+                                                            <span id="Main1_lblMailPass"></span>&nbsp;<span id="Main1_Label4"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.box-body -->
+
+                                <!-- /.box-footer -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+                </section>
+                <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">My Profile</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div role="form">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Gender:</label>
+                                            <select name="ctl00$Main1$ddlgender" id="Main1_ddlgender" class="form-control">
+	<option value="0">Select</option>
+	<option value="1">Male</option>
+	<option value="2">Female</option>
+
+</select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Date of Birth:</label>
+                                            <input name="ctl00$Main1$txtDob" type="text" id="Main1_txtDob" class="form-control" placeholder="Date of Birth" style="width:500px;" />
+                                            <script>
+                                                $j('#Main1_txtDob').Zebra_DatePicker({
+                                                    view: 'years',
+                                                    direction: [1, true],
+                                                });
+                                            </script>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Home County:</label>
+                                            <select name="ctl00$Main1$ddlCounty" id="Main1_ddlCounty" class="form-control">
+	<option value="0">--Select County--</option>
+	<option value="BOMET">BOMET</option>
+	<option value="BUNGOMA">BUNGOMA</option>
+	<option value="BUSIA">BUSIA</option>
+	<option value="ELGEYO MAR">ELGEYO MAR</option>
+	<option value="EMBU">EMBU</option>
+	<option value="GARISSA">GARISSA</option>
+	<option value="HOMABAY">HOMABAY</option>
+	<option value="ISIOLO">ISIOLO</option>
+	<option value="KAJIADO">KAJIADO</option>
+	<option value="KAKAMEGA">KAKAMEGA</option>
+	<option value="KERICHO">KERICHO</option>
+	<option value="KIAMBU">KIAMBU</option>
+	<option value="KILIFI">KILIFI</option>
+	<option value="KIRINYAGA">KIRINYAGA</option>
+	<option value="KISII">KISII</option>
+	<option value="KISUMU">KISUMU</option>
+	<option value="KITUI">KITUI</option>
+	<option value="KWALE">KWALE</option>
+	<option value="LAIKIPIA">LAIKIPIA</option>
+	<option value="LAMU">LAMU</option>
+	<option value="MACHAKOS">MACHAKOS</option>
+	<option value="MAKUENI">MAKUENI</option>
+	<option value="MANDERA">MANDERA</option>
+	<option value="MARSABIT">MARSABIT</option>
+	<option value="MERU">MERU</option>
+	<option value="MIGORI">MIGORI</option>
+	<option value="MOMBASA">MOMBASA</option>
+	<option value="MURANG`A">MURANG`A</option>
+	<option value="NAIROBI">NAIROBI</option>
+	<option value="NAKURU">NAKURU</option>
+	<option value="NANDI">NANDI</option>
+	<option value="NAROK">NAROK</option>
+	<option value="NYAMIRA">NYAMIRA</option>
+	<option value="NYANDARUA">NYANDARUA</option>
+	<option value="NYERI">NYERI</option>
+	<option value="SAMBURU">SAMBURU</option>
+	<option value="SIAYA">SIAYA</option>
+	<option value="TAITA TAVE">TAITA TAVE</option>
+	<option value="TANA RIVER">TANA RIVER</option>
+	<option value="THARAKA NI">THARAKA NI</option>
+	<option value="TRANSNZOIA">TRANSNZOIA</option>
+	<option value="TURKANA">TURKANA</option>
+	<option value="UASIN GISH">UASIN GISH</option>
+	<option value="VIHIGA">VIHIGA</option>
+	<option value="WAJIR">WAJIR</option>
+	<option value="WEST POKOT">WEST POKOT</option>
+
+</select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Tribe:</label>
+                                            <select name="ctl00$Main1$ddlTribe" id="Main1_ddlTribe" class="form-control">
+	<option value="0">--Select Tribe--</option>
+	<option value="ARAB">ARAB</option>
+	<option value="ASIAN">ASIAN</option>
+	<option value="BONI">BONI</option>
+	<option value="BORAN">BORAN</option>
+	<option value="CONGOLESE">CONGOLESE</option>
+	<option value="ELKONY">ELKONY</option>
+	<option value="ELMOLO">ELMOLO</option>
+	<option value="EMBU">EMBU</option>
+	<option value="FOREIGN">FOREIGN</option>
+	<option value="GABBRA">GABBRA</option>
+	<option value="GHANA">GHANA</option>
+	<option value="GUSSI">GUSSI</option>
+	<option value="KALENJIN">KALENJIN</option>
+	<option value="KAMBA">KAMBA</option>
+	<option value="KIKUYU">KIKUYU</option>
+	<option value="KIPSIGIS">KIPSIGIS</option>
+	<option value="KISII">KISII</option>
+	<option value="KURIA">KURIA</option>
+	<option value="LUHYA">LUHYA</option>
+	<option value="LUO">LUO</option>
+	<option value="MAASAI">MAASAI</option>
+	<option value="MARAKWET">MARAKWET</option>
+	<option value="MBERE">MBERE</option>
+	<option value="MERU">MERU</option>
+	<option value="MIJIKENDA">MIJIKENDA</option>
+	<option value="NJEMPS">NJEMPS</option>
+	<option value="ORMA">ORMA</option>
+	<option value="POKOMO">POKOMO</option>
+	<option value="POKOT">POKOT</option>
+	<option value="RENDILLE">RENDILLE</option>
+	<option value="SAMBURU">SAMBURU</option>
+	<option value="SEGEJU">SEGEJU</option>
+	<option value="SOMALI">SOMALI</option>
+	<option value="SUBA">SUBA</option>
+	<option value="SWAHILI">SWAHILI</option>
+	<option value="TAITA">TAITA</option>
+	<option value="TAVETA">TAVETA</option>
+	<option value="TESO">TESO</option>
+	<option value="THARAKA">THARAKA</option>
+	<option value="TUGEN">TUGEN</option>
+	<option value="TURKANA">TURKANA</option>
+	<option value="UGANDAN">UGANDAN</option>
+
+</select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Disability Status:</label>
+                                            <select name="ctl00$Main1$ddlDisabled" id="Main1_ddlDisabled" class="form-control select2">
+	<option value="1">None</option>
+	<option value="2">Disabled</option>
+
+</select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                <button onclick="__doPostBack('ctl00$Main1$btnUpdate','')" id="Main1_btnUpdate" type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+
+            </div>
+
+            <!-- /.content-wrapper -->
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+
+                </div>
+                <center>
+                    <strong>Copyright &copy; 2020 <a href="#">Maseno University</a>.</strong> Powered by. <a href="https://appkings.co.ke">AppKings Solutions Limited</a>
+                </center>
+            </footer>
+            <div class="control-sidebar-bg"></div>
+        </div>
+        <!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Bootstrap 3.3.7 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- FastClick -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/3.1.0/fastclick.js"></script>
+
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
+
+<!-- Sparkline -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+
+<!-- jvectormap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap-world-mill-en.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+
+<!-- ChartJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/pages/dashboard2.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/demo.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap.min.js"></script>
+
+        <script>
+            $(function() {
+                $('#example1').DataTable()
+                $('#example2').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': false
+                })
+            })
+        </script>
+    </form>
+</body>
+
+</html>

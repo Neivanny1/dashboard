@@ -1,0 +1,7 @@
+{
+    "MYSQL_HOST": "localhost",
+    "MYSQL_USER": "dev",
+    "MYSQL_PASSWORD": "",
+    "MYSQL_DB": "dev",
+    "SECRET_KEY": "^2lA8!#9Fz4@7qP*1sR$6uY0vXK@$*JH"
+  }
